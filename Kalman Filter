@@ -1,0 +1,39 @@
+#include <OneWire.h>
+#include <ResponsiveAnalogRead.h>
+#include <DallasTemperature.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+#define ONE_WIRE_BUS 2
+OneWire oneWire(ONE_WIRE_BUS);
+const int ANALOG_PIN = A0;
+ResponsiveAnalogRead analog(ANALOG_PIN, true);
+
+void setup() {
+}
+
+void loop(){
+  Realtime();
+}
+
+void Data_NTU (){ 
+ suhu.requestTemperatures(); 
+ celcius=suhu.getTempCByIndex(0);
+ }
+  
+void Realtime(){
+ analog.update();
+ delay (10);
+ analog.update();
+ delay (10);
+ analog.update();
+ delay (10);
+ analog.update();
+ delay (10);
+ analog.update();
+
+  Serial.println(analog.getRawValue());
+  Serial.print("\t");
+  Serial.println(analog.getValue());
+    Serial.print("\t");
+}
